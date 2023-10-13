@@ -1,6 +1,7 @@
 package com.spring.project.demospring.resources;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.project.demospring.entities.User;
 import com.spring.project.demospring.services.UserService;
-
-import io.micrometer.core.ipc.http.HttpSender.Response;
 
 @RestController
 @RequestMapping(value = "/users")
