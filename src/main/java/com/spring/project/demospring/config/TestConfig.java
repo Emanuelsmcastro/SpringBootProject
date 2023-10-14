@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Profile;
 
 import com.spring.project.demospring.entities.Category;
 import com.spring.project.demospring.entities.Order;
+import com.spring.project.demospring.entities.Product;
 import com.spring.project.demospring.entities.User;
 import com.spring.project.demospring.repositories.CategoryRepository;
 import com.spring.project.demospring.repositories.OrderRepository;
+import com.spring.project.demospring.repositories.ProductRepository;
 import com.spring.project.demospring.repositories.UserRepository;
 
 @Configuration
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User p1 = new User("Emanuel", "emanuelsmcastro3@gmail.com", "123123", "123123");
@@ -41,9 +46,18 @@ public class TestConfig implements CommandLineRunner {
         Category cat2 = new Category("Books");
         Category cat3 = new Category("Computers");
 
+        Product prod1 = new Product("Headset", 500.00);
+        Product prod2 = new Product("Computador", 5000.00);
+        Product prod3 = new Product("Java", 300.00);
+
+        prod1.getCategories().addAll(Arrays.asList(cat3, cat1));
+        prod3.getCategories().add(cat2);
+        prod2.getCategories().addAll(Arrays.asList(cat2, cat1));
+
         userRepository.saveAll(Arrays.asList(p1, p2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(prod1, prod2, prod3));
     }
 
 }
