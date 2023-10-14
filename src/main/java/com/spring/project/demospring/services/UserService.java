@@ -12,6 +12,8 @@ import com.spring.project.demospring.repositories.UserRepository;
 import com.spring.project.demospring.services.exceptions.DatabaseException;
 import com.spring.project.demospring.services.exceptions.ResourceNotFountException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UserService {
 
@@ -40,9 +42,13 @@ public class UserService {
     }
 
     public User update(Long id, User obj) {
-        User user = repository.getReferenceById(id);
-        updateDate(user, obj);
-        return repository.save(user);
+        try {
+            User user = repository.getReferenceById(id);
+            updateDate(user, obj);
+            return repository.save(user);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFountException(id);
+        }
     }
 
     private void updateDate(User user, User obj) {
