@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.spring.project.demospring.entities.Category;
 import com.spring.project.demospring.entities.Order;
 import com.spring.project.demospring.entities.OrderItem;
+import com.spring.project.demospring.entities.Payment;
 import com.spring.project.demospring.entities.Product;
 import com.spring.project.demospring.entities.User;
 import com.spring.project.demospring.repositories.CategoryRepository;
@@ -55,6 +56,8 @@ public class TestConfig implements CommandLineRunner {
         Product prod2 = new Product("Computador", 5000.00);
         Product prod3 = new Product("Java", 300.00);
 
+        Payment pay1 = new Payment(Instant.parse("2019-07-20T19:53:07Z"), o1);
+
         prod1.getCategories().addAll(Arrays.asList(cat3, cat1));
         prod3.getCategories().add(cat2);
         prod2.getCategories().addAll(Arrays.asList(cat2, cat1));
@@ -69,6 +72,8 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi3 = new OrderItem(o3, prod2, 10, prod2.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3));
+        o1.setPayment(pay1);
+        orderRepository.save(o1);
 
     }
 
