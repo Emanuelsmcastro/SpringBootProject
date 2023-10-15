@@ -40,7 +40,7 @@ Pré-requisitos: Java 17
 git clone https://github.com/Emanuelsmcastro/SpringBootProject.git
 
 # entrar na pasta do projeto back end
-cd backend  #-> Diretório que contém o repositório clonado.
+cd backend  #-> Diretório que contém o projeto clonado.
 
 # executar o projeto
 ./mvnw spring-boot:run
