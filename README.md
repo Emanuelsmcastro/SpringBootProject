@@ -33,7 +33,7 @@ Esse modelo de url foi adotado para as demais entidades do projeto, como por exe
 # Como executar o projeto
 
 ## Back end
-Pré-requisitos: Java 11
+Pré-requisitos: Java 17
 
 ```bash
 # clonar repositório
